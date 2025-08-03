@@ -34,10 +34,6 @@ A direct-to-consumer platform connecting farmers with customers for fresh produc
 - Order processing system
 - Role-based dashboards
 
-### Bonus Features
-- Email order confirmations
-- Responsive design (Mobile-first)
-
 ## Setup Instructions
 
 ### Prerequisites
@@ -78,7 +74,7 @@ A direct-to-consumer platform connecting farmers with customers for fresh produc
 | Method | Endpoint           | Description                | Protected |
 |--------|--------------------|----------------------------|-----------|
 | GET    | /api/users         | Get all users (admin)      | Yes       |
-| PUT    | /api/users/profile | Update user profile        | Yes       |
+| PUT    | /api/me | Update user profile        | Yes       |
 
 ## Setup Guide
 
@@ -88,41 +84,18 @@ A direct-to-consumer platform connecting farmers with customers for fresh produc
    - Install MongoDB locally or create a free cluster on MongoDB Atlas
    - Update the `MONGO_URI` in `.env`:
      ```
-     MONGO_URI=mongodb://localhost:27017/farmfresh
-     # OR for Atlas
-     MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/farmfresh
+     NODE_ENV=development
+      PORT=5001
+      MONGO_URI="mongodb+srv://george:george1324@customers.jmmu5cx.mongodb.net/farm-direct?retryWrites=true&w=majority"
+      JWT_SECRET="974463eaddf1103988690b3c25bd39cc"
      ```
 
-2. **Email Service**:
-   - Create a Gmail account for sending notifications
-   - Enable "Less secure app access" or use App Passwords
-   - Add credentials to `.env`:
-     ```
-     EMAIL_USER=your.email@gmail.com
-     EMAIL_PASS=yourpassword
-     ```
-
-3. **File Uploads**:
+2. **File Uploads**:
    - Create an `uploads` folder in the backend root
    - Ensure proper permissions:
      ```bash
      mkdir uploads
      chmod -R 755 uploads
-     ```
-
-### Frontend Configuration
-
-1. **API Base URL**:
-   - Set the backend API URL in `.env`:
-     ```
-     VITE_API_URL=http://localhost:5000/api
-     ```
-
-2. **Environment Variables**:
-   - Configure any frontend-specific settings:
-     ```
-     VITE_GOOGLE_MAPS_API_KEY=your_key (if using maps)
-     VITE_STRIPE_PUBLIC_KEY=your_key (if implementing payments)
      ```
 
 
@@ -176,12 +149,3 @@ A direct-to-consumer platform connecting farmers with customers for fresh produc
    - Add items to cart
    - Checkout flow
    - Order history views
-
-### Automated Testing
-Run test suites with:
-```bash
-# Backend tests
-cd backend && npm test
-
-# Frontend tests
-cd frontend && npm test
