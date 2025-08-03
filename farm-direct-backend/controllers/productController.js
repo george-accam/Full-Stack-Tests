@@ -38,7 +38,8 @@ const getProducts = async (req, res) => {
 // Get single product
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id).populate(
+    const { id } = req.params;
+    const product = await Product.findById(id).populate(
       "farmer",
       "name email phone"
     );
@@ -60,8 +61,7 @@ const getProductById = async (req, res) => {
 // Create a product
 const createProduct = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, expiryDate } =
-      req.body;
+    const { name, description, price, category, quantity, expiryDate } = req.body;
 
     const farmer = await User.findById(req.user.id);
     if (!farmer || farmer.role !== "farmer") {
@@ -97,10 +97,11 @@ const createProduct = async (req, res) => {
 // Update a product
 const updateProduct = async (req, res) => {
   try {
+    const { id } = req.params;
     const { name, description, price, category, quantity, expiryDate } =
       req.body;
 
-    let product = await Product.findById(req.params.id);
+    let product = await Product.findById(id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -143,7 +144,8 @@ const updateProduct = async (req, res) => {
 //  Delete a product
 const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const { id } = req.params;
+    const product = await Product.findById(id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -172,7 +174,8 @@ const deleteProduct = async (req, res) => {
 // Get farmer's products
 const getFarmerProducts = async (req, res) => {
   try {
-    const products = await Product.find({ farmer: req.params.id })
+    const { id } = req.params;
+    const products = await Product.find({ farmer: id })
       .populate("farmer", "name email phone")
       .sort({ createdAt: -1 });
 

@@ -1,4 +1,3 @@
-// routes/orderRoutes.js
 const express = require("express");
 const router = express.Router();
 const {
@@ -14,8 +13,8 @@ const { protect, farmer } = require("../middlewares/auth");
 router.post("/", protect, createOrder);
 router.get("/my-orders", protect, getMyOrders);
 router.get("/:id", protect, getOrderById);
-router.put("/:id/pay", protect, farmer, updateOrderToPaid);
-router.put("/:id/deliver", protect, farmer, updateOrderToDelivered);
+router.put("/:id", protect, farmer, updateOrderToPaid);
+router.put("/:id", protect, farmer, updateOrderToDelivered);
 
 // Admin route
 router.get("/", protect, getOrders);

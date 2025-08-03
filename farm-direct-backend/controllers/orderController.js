@@ -1,4 +1,3 @@
-// controllers/orderController.js
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 const User = require("../models/User");
@@ -110,7 +109,8 @@ const getOrderById = async (req, res) => {
 // Update order to paid
 const updateOrderToPaid = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const { id } = req.params;
+    const order = await Order.findById(id);
 
     if (!order) {
       return res.status(404).json({ message: "Order not found" });
@@ -132,12 +132,11 @@ const updateOrderToPaid = async (req, res) => {
   }
 };
 
-// @desc    Update order to delivered
-// @route   PUT /api/orders/:id/deliver
-// @access  Private/Farmer
+// Update order to delivered
 const updateOrderToDelivered = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const { id } = req.params;
+    const order = await Order.findById(id);
 
     if (!order) {
       return res.status(404).json({ message: "Order not found" });
@@ -159,9 +158,7 @@ const updateOrderToDelivered = async (req, res) => {
   }
 };
 
-// @desc    Get logged in user orders
-// @route   GET /api/orders/myorders
-// @access  Private
+// Get logged in user orders
 const getMyOrders = async (req, res) => {
   try {
     let orders;
@@ -183,9 +180,7 @@ const getMyOrders = async (req, res) => {
   }
 };
 
-// @desc    Get all orders (Admin)
-// @route   GET /api/orders
-// @access  Private/Admin
+// Get all orders (Admin)
 const getOrders = async (req, res) => {
   try {
     const orders = await Order.find({})
