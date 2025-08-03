@@ -83,7 +83,18 @@ const login = async (req, res) => {
       { expiresIn: "7d" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({
+          message: "User login successfully",
+          user: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            address: user.address,
+            phone: user.phone,
+          },
+          token,
+        });
       }
     );
   } catch (err) {
@@ -97,7 +108,17 @@ const getMe = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id).select("-password");
-    res.status(200).json(user);
+    res.status(200).json({
+      message: "User retrieved successfully",
+      user: { 
+        id: user?._id,
+        name: user?.name,
+        email: user?.email,
+        role: user?.role,
+        address: user?.address,
+        phone: user?.phone,
+      },
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).json("Server error" + err.message);

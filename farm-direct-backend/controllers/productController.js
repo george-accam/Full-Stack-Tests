@@ -1,12 +1,9 @@
-// controllers/productController.js
 const Product = require("../models/Product");
 const User = require("../models/User");
 const path = require("path");
 const fs = require("fs");
 
-// @desc    Get all products
-// @route   GET /api/products
-// @access  Public
+// Get all products
 const getProducts = async (req, res) => {
   try {
     const { category, minPrice, maxPrice, search } = req.query;
@@ -38,9 +35,7 @@ const getProducts = async (req, res) => {
   }
 };
 
-// @desc    Get single product
-// @route   GET /api/products/:id
-// @access  Public
+// Get single product
 const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id).populate(
@@ -62,9 +57,7 @@ const getProductById = async (req, res) => {
   }
 };
 
-// @desc    Create a product
-// @route   POST /api/products
-// @access  Private/Farmer
+// Create a product
 const createProduct = async (req, res) => {
   try {
     const { name, description, price, category, quantity, expiryDate } =
@@ -101,9 +94,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// @desc    Update a product
-// @route   PUT /api/products/:id
-// @access  Private/Farmer
+// Update a product
 const updateProduct = async (req, res) => {
   try {
     const { name, description, price, category, quantity, expiryDate } =
@@ -149,9 +140,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// @desc    Delete a product
-// @route   DELETE /api/products/:id
-// @access  Private/Farmer
+//  Delete a product
 const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -180,9 +169,7 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-// @desc    Get farmer's products
-// @route   GET /api/products/farmer/:id
-// @access  Public
+// Get farmer's products
 const getFarmerProducts = async (req, res) => {
   try {
     const products = await Product.find({ farmer: req.params.id })

@@ -4,8 +4,6 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 
 // @desc    Create new order
-// @route   POST /api/orders
-// @access  Private/Customer
 const createOrder = async (req, res) => {
   try {
     const { items, shippingAddress, paymentMethod } = req.body;
@@ -45,7 +43,6 @@ const createOrder = async (req, res) => {
     }
 
     // For simplicity, we assume one farmer per order
-    // In a real app, you might want to split orders per farmer
     if (farmerIds.size !== 1) {
       return res.status(400).json({
         message: "All products must be from the same farmer",
@@ -80,9 +77,7 @@ const createOrder = async (req, res) => {
   }
 };
 
-// @desc    Get order by ID
-// @route   GET /api/orders/:id
-// @access  Private
+// Get order by ID
 const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id)
@@ -112,9 +107,7 @@ const getOrderById = async (req, res) => {
   }
 };
 
-// @desc    Update order to paid
-// @route   PUT /api/orders/:id/pay
-// @access  Private
+// Update order to paid
 const updateOrderToPaid = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
