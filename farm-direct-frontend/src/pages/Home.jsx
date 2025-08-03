@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-agri-light">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-agri-green text-white py-20">
+      <section className="bg-green-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Welcome to AgriMarket
@@ -15,13 +15,13 @@ export default function Home() {
           <div className="flex justify-center gap-4">
             <Link
               to="/register?role=farmer"
-              className="bg-white text-agri-green px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition"
+              className="bg-white text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition"
             >
               I'm a Farmer
             </Link>
             <Link
               to="/register?role=customer"
-              className="border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-agri-green transition"
+              className="border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-green-600 transition"
             >
               I'm a Customer
             </Link>
@@ -31,7 +31,7 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="py-16 container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-agri-green">
+        <h2 className="text-3xl font-bold text-center mb-12 text-green-600">
           Why Choose AgriMarket?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -71,7 +71,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-6">Ready to get started?</h2>
           <Link
             to="/products"
-            className="inline-block bg-agri-green text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition"
+            className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition"
           >
             Browse Products
           </Link>

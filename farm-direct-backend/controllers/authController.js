@@ -24,7 +24,7 @@ const register = async (req, res) => {
 
     const payload = {
       user: {
-        id: user.id,
+        id: user._id,
         role: user.role,
       },
     };
@@ -35,18 +35,27 @@ const register = async (req, res) => {
       { expiresIn: "7d" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.status(200).json({ 
+            message: "User registered successfully",
+            user: { 
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                address: user.address,
+                phone: user.phone
+            },  
+            token 
+        });
       }
     );
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json("Server error" + err.message);
   }
 };
 
-// @desc    Authenticate user & get token
-// @route   POST /api/auth/login
-// @access  Public
+// Login user
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -63,7 +72,7 @@ const login = async (req, res) => {
 
     const payload = {
       user: {
-        id: user.id,
+        id: user._id,
         role: user.role,
       },
     };
@@ -83,13 +92,14 @@ const login = async (req, res) => {
   }
 };
 
+// Get current user
 const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
-    res.json(user);
+    res.status(200).json(user);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json("Server error" + err.message);
   }
 };
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { fetchProductById } from "../services/productService";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/CardContext";
+import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 
 export default function ProductDetail() {
@@ -10,6 +11,7 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
+  const { isFarmer } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -120,7 +122,7 @@ export default function ProductDetail() {
                 </p>
               </div>
               
-              {product.quantity > 0 && (
+              {product.quantity > 0 && !isFarmer && (
                 <div className="mt-8">
                   <div className="flex items-center mb-4">
                     <label htmlFor="quantity" className="mr-4">
@@ -142,6 +144,23 @@ export default function ProductDetail() {
                     className="w-full bg-agri-green text-white py-3 px-4 rounded-lg hover:bg-green-700 transition"
                   >
                     Add to Cart
+                  </button>
+                </div>
+              )}
+              
+              {isFarmer && (
+                <div className="mt-8 flex gap-4">
+                  <Link
+                    to={`/products/edit/${product._id}`}
+                    className="flex-1 bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 transition text-center"
+                  >
+                    Edit Product
+                  </Link>
+                  <button
+                    onClick={() => navigate(-1)}
+                    className="flex-1 bg-gray-500 text-white py-3 px-4 rounded-lg hover:bg-gray-600 transition"
+                  >
+                    Back to Products
                   </button>
                 </div>
               )}

@@ -55,9 +55,9 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-agri-light flex items-center justify-center p-4">
+    <div className="min-h-screen bg-green-600 flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-agri-green mb-6 text-center">
+        <h2 className="text-2xl font-bold text-green-600 mb-6 text-center">
           {formData.role === "farmer"
             ? "Farmer Registration"
             : "Customer Registration"}
@@ -74,7 +74,7 @@ export default function Register() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
               required
             />
           </div>
@@ -89,7 +89,7 @@ export default function Register() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
               required
             />
           </div>
@@ -105,7 +105,7 @@ export default function Register() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
                 required
                 minLength="6"
               />
@@ -124,7 +124,7 @@ export default function Register() {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
                 required
               />
             </div>
@@ -139,7 +139,7 @@ export default function Register() {
               name="role"
               value={formData.role}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
             >
               <option value="customer">Customer</option>
               <option value="farmer">Farmer</option>
@@ -155,7 +155,7 @@ export default function Register() {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
               rows="2"
             />
           </div>
@@ -170,14 +170,14 @@ export default function Register() {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 px-4 bg-agri-green text-white rounded-lg hover:bg-green-700 transition ${
+            className={`w-full py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition ${
               loading ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >
@@ -188,7 +188,7 @@ export default function Register() {
         <div className="mt-6 text-center">
           <p className="text-gray-600">
             Already have an account?{" "}
-            <Link to="/login" className="text-agri-green hover:underline">
+            <Link to="/login" className="text-green-600 hover:underline">
               Login here
             </Link>
           </p>

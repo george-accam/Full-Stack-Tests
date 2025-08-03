@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -20,7 +20,9 @@ export default function Login() {
     try {
       await login(email, password);
       toast.success("Login successful!");
+      setTimeout(() => {
       navigate(from, { replace: true });
+      }, 1000); // Redirect after 1 second
     } catch (error) {
       toast.error("Login failed. Please check your credentials.");
       console.error("Login error:", error);
@@ -30,9 +32,9 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-agri-light flex items-center justify-center p-4">
+    <div className="min-h-screen bg-green-600 flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-agri-green mb-6 text-center">
+        <h2 className="text-2xl font-bold text-green-600 mb-6 text-center">
           Login to AgriMarket
         </h2>
 
@@ -46,7 +48,7 @@ export default function Login() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
               required
             />
           </div>
@@ -60,7 +62,7 @@ export default function Login() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-agri-green focus:border-transparent"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
               required
             />
           </div>
@@ -68,7 +70,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 px-4 bg-agri-green text-white rounded-lg hover:bg-green-700 transition ${
+            className={`w-full py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition ${
               loading ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >
@@ -79,12 +81,13 @@ export default function Login() {
         <div className="mt-6 text-center">
           <p className="text-gray-600">
             Don't have an account?{" "}
-            <Link to="/register" className="text-agri-green hover:underline">
+            <Link to="/register" className="text-green-600 hover:underline">
               Register here
             </Link>
           </p>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

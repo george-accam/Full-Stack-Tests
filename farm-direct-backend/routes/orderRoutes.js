@@ -12,7 +12,7 @@ const {
 const { protect, farmer } = require("../middlewares/auth");
 
 router.post("/", protect, createOrder);
-router.get("/myorders", protect, getMyOrders);
+router.get("/my-orders", protect, getMyOrders);
 router.get("/:id", protect, getOrderById);
 router.put("/:id/pay", protect, farmer, updateOrderToPaid);
 router.put("/:id/deliver", protect, farmer, updateOrderToDelivered);
